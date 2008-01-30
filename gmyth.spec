@@ -1,6 +1,6 @@
 %define name gmyth
 %define version 0.4
-%define rel %mkrel 1
+%define rel %mkrel 2
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -32,7 +32,6 @@ TV listings.
 Summary: Library files for MythTV remote access
 Group: System/Libraries
 Requires: %{name} = %{version}-%{release}
-Requires: pkgconfig glib2-devel mysql-devel curl-devel
 
 %description -n %{libname}
 gmyth-devel contains development libraries and headers for the GMyth library.
@@ -41,7 +40,7 @@ gmyth-devel contains development libraries and headers for the GMyth library.
 Summary: Development libraries for MythTV remote access
 Group: Development/C
 Requires: %{libname} = %{version}-%{release}
-Requires: pkgconfig glib2-devel mysql-devel curl-devel
+Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %{libname_devel}
 Development libraries and headers for the GMyth library.
