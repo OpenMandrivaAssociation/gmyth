@@ -1,6 +1,6 @@
 %define name gmyth
 %define version 0.4
-%define rel %mkrel 0.1
+%define rel %mkrel 1
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -11,7 +11,7 @@ Name: %{name}
 Version: %version
 Release: %rel
 License: LGPLv2+
-Group: System Environment/Libraries
+Group: System/Libraries
 Source0: http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.gz
 Source1: COPYING.LGPL
 # http://bugzilla.gnome.org/show_bug.cgi?id=483748
@@ -39,7 +39,7 @@ gmyth-devel contains development libraries and headers for the GMyth library.
 
 %package -n %{libname_devel}
 Summary: Development libraries for MythTV remote access
-Group: Development/Libraries
+Group: Development/C
 Requires: %{libname} = %{version}-%{release}
 Requires: pkgconfig glib2-devel mysql-devel curl-devel
 
