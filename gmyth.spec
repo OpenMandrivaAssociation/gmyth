@@ -77,7 +77,7 @@ rm -rf %{buildroot}
 %{_bindir}/*
 
 %files -n %{libname}
-%{_libdir}/libgmyth.so.*
+%{_libdir}/libgmyth.so.%{major}*
 
 %files -n %{libname_devel}
 %defattr(-,root,root)
