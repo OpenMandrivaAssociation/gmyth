@@ -10,10 +10,11 @@ Summary: MythTV remote access libraries
 Name: %{name}
 Version: %version
 Release: %rel
+# COPYING file states GPL but all source indicates LGPL.
+# http://sourceforge.net/tracker/index.php?func=detail&aid=1790620&group_id=177106&atid=879914
 License: LGPLv2+
 Group: System/Libraries
 Source0: http://downloads.sourceforge.net/%{name}/%{name}_%{version}-indt1.tar.gz
-Source1: COPYING.LGPL
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 URL: http://gmyth.sf.net
 BuildRequires: mysql-devel
@@ -22,7 +23,7 @@ BuildRequires: libxml2-devel
 BuildRequires: glib2-devel
 
 %description
-GMyth is a library used by applications to access content provided by the
+A library and utilities used by applications to access content provided by the
 MythTV set-top box framework, such as Live TV broadcasts, TV recordings, or
 TV listings.
 
@@ -32,10 +33,10 @@ Group: System/Libraries
 Requires: %{name} = %{version}-%{release}
 
 %description -n %{libname}
-gmyth-devel contains development libraries and headers for the GMyth library.
+The GMyth library.
 
 %package -n %{libname_devel}
-Summary: Development libraries for MythTV remote access
+Summary: Development libraries/headers for MythTV remote access
 Group: Development/C
 Requires: %{libname} = %{version}-%{release}
 Provides: %{name}-devel = %{version}-%{release}
@@ -45,19 +46,14 @@ Development libraries and headers for the GMyth library.
 
 %prep
 %setup -q -n %{name}
-# Upstream used the default license from the autotools, all the
-# files and the project page says LGPL, see:
-# http://sourceforge.net/tracker/index.php?func=detail&aid=1790620&group_id=177106&atid=879914
-cp -a %{SOURCE1} .
 
 %build
 %configure
-make %{?_smp_mflags}
-chmod a-x src/*.[ch]
+%make
 
 %install
 rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+%makeinstall
 rm -f %{buildroot}/%{_libdir}/*.la
 rm -f %{buildroot}/%{_libdir}/*.a
 
@@ -70,7 +66,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-, root, root)
-%doc AUTHORS COPYING.LGPL
+%doc AUTHORS
 %{_bindir}/*
 
 %files -n %{libname}
