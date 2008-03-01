@@ -1,6 +1,6 @@
 %define name gmyth
-%define version 0.4
-%define rel %mkrel 2
+%define version 0.7
+%define rel %mkrel 1
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -12,10 +12,8 @@ Version: %version
 Release: %rel
 License: LGPLv2+
 Group: System/Libraries
-Source0: http://downloads.sourceforge.net/%{name}/%{name}_%{version}.tar.gz
+Source0: http://downloads.sourceforge.net/%{name}/%{name}_%{version}-indt1.tar.gz
 Source1: COPYING.LGPL
-# http://bugzilla.gnome.org/show_bug.cgi?id=483748
-Patch1: gmyth_file_transfer-missing-context-unlock-on-error.diff
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 URL: http://gmyth.sf.net
 BuildRequires: mysql-devel
@@ -51,7 +49,6 @@ Development libraries and headers for the GMyth library.
 # files and the project page says LGPL, see:
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1790620&group_id=177106&atid=879914
 cp -a %{SOURCE1} .
-%patch1 -p1 -b .not-port-crasher
 
 %build
 %configure
