@@ -1,6 +1,6 @@
 %define name gmyth
 %define version 0.7
-%define rel %mkrel 3
+%define rel %mkrel 4
 
 %define major 0
 %define libname %mklibname %{name} %{major}
