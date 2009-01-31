@@ -1,6 +1,6 @@
 %define name gmyth
-%define version 0.7
-%define rel %mkrel 4
+%define version 0.7.1
+%define rel 1
 
 %define major 0
 %define libname %mklibname %{name} %{major}
@@ -9,12 +9,13 @@
 Summary: MythTV remote access libraries
 Name: %{name}
 Version: %version
-Release: %rel
+Release: %mkrel %rel
 # COPYING file states GPL but all source indicates LGPL.
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1790620&group_id=177106&atid=879914
 License: LGPLv2+
 Group: System/Libraries
-Source0: http://downloads.sourceforge.net/%{name}/%{name}_%{version}-indt1.tar.gz
+Source0: http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Patch0: gmyth-0.7.1-linkage.patch
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root
 URL: http://gmyth.sf.net
 BuildRequires: mysql-devel
@@ -45,17 +46,18 @@ Provides: %{name}-devel = %{version}-%{release}
 Development libraries and headers for the GMyth library.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{version}
+%patch0 -p0
 
 %build
-%configure
+%configure2_5x --disable-static
 %make
 
 %install
 rm -rf %{buildroot}
-%makeinstall
-rm -f %{buildroot}/%{_libdir}/*.la
-rm -f %{buildroot}/%{_libdir}/*.a
+%makeinstall_std
+
+rm -fr %buildroot%_libdir/*.la
 
 %clean
 rm -rf %{buildroot}
