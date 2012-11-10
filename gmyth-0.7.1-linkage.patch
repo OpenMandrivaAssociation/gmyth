@@ -1,0 +1,66 @@
+--- gmyth/Makefile.am.link	2009-01-31 16:19:09.000000000 +0100
++++ gmyth/Makefile.am	2009-01-31 16:19:29.000000000 +0100
+@@ -58,7 +58,8 @@
+ libgmyth_la_LDFLAGS =			\
+ 	-export-dynamic				\
+ 	$(GLIB_CFLAGS)				\
+-	$(GOBJECT_CFLAGS)			\
++	$(GOBJECT_CFLAGS)
++libgmyth_la_LIBADD = $(GOBJECT_LIBS) $(GTHREAD_LIBS) $(LIBCURL_LIBS) \
+ 	$(MYSQL_LIBS)				\
+ 	$(GST_LIBS)					\
+ 	$(GSTBASE_LIBS)				\
+--- gmyth/Makefile.in.link	2009-01-31 16:19:42.000000000 +0100
++++ gmyth/Makefile.in	2009-01-31 16:20:27.000000000 +0100
+@@ -57,7 +57,6 @@
+ 	"$(DESTDIR)$(libgmyth_includedir)"
+ libLTLIBRARIES_INSTALL = $(INSTALL)
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+-libgmyth_la_LIBADD =
+ am__objects_1 = libgmyth_la-gmyth_marshal.lo
+ am_libgmyth_la_OBJECTS = libgmyth_la-gmyth_common.lo \
+ 	libgmyth_la-gmyth_debug.lo libgmyth_la-gmyth_epg.lo \
+@@ -258,7 +257,8 @@
+ libgmyth_la_LDFLAGS = \
+ 	-export-dynamic				\
+ 	$(GLIB_CFLAGS)				\
+-	$(GOBJECT_CFLAGS)			\
++	$(GOBJECT_CFLAGS)
++libgmyth_la_LIBADD = $(GOBJECT_LIBS) $(GTHREAD_LIBS) $(LIBCURL_LIBS) \
+ 	$(MYSQL_LIBS)				\
+ 	$(GST_LIBS)					\
+ 	$(GSTBASE_LIBS)				\
+--- samples/Makefile.am~	2008-03-03 12:59:38.000000000 +0100
++++ samples/Makefile.am	2009-01-31 16:27:19.000000000 +0100
+@@ -6,14 +6,11 @@
+ gmyth_ls_SOURCES = \
+         gmyth_ls.c
+ 
+-LDADD = \
++LDADD = @GLIB_LIBS@ @GOBJECT_LIBS@ @GTHREAD_LIBS@ @LIBCURL_LIBS@\
+         $(top_builddir)/gmyth/libgmyth.la
+ 
+ AM_CFLAGS = -g
+ 
+-AM_LDFLAGS = \
+-        @GLIB_LIBS@ @GOBJECT_LIBS@ @GTHREAD_LIBS@ @LIBCURL_LIBS@
+-
+ INCLUDES = \
+         -I$(top_srcdir) \
+         -I$(top_srcdir)/gmyth \
+--- samples/Makefile.in~	2008-03-03 12:59:51.000000000 +0100
++++ samples/Makefile.in	2009-01-31 16:28:01.000000000 +0100
+@@ -198,12 +198,10 @@
+ gmyth_ls_SOURCES = \
+         gmyth_ls.c
+ 
+-LDADD = \
++LDADD = @GLIB_LIBS@ @GOBJECT_LIBS@ @GTHREAD_LIBS@ @LIBCURL_LIBS@\
+         $(top_builddir)/gmyth/libgmyth.la
+ 
+ AM_CFLAGS = -g
+-AM_LDFLAGS = \
+-        @GLIB_LIBS@ @GOBJECT_LIBS@ @GTHREAD_LIBS@ @LIBCURL_LIBS@
+ 
+ INCLUDES = \
+         -I$(top_srcdir) \
