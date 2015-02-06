@@ -5,7 +5,7 @@
 Summary:	MythTV remote access libraries
 Name:		gmyth
 Version:	0.7.1
-Release:	8
+Release:	9
 # COPYING file states GPL but all source indicates LGPL.
 # http://sourceforge.net/tracker/index.php?func=detail&aid=1790620&group_id=177106&atid=879914
 License:	LGPLv2+
