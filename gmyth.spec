@@ -14,6 +14,11 @@ URL:		https://gmyth.sf.net
 Source0:	http://downloads.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
 Patch0:		gmyth-0.7.1-linkage.patch
 Patch1:		gmyth-0.7.1-curlheader.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	mysql-devel
 BuildRequires:	pkgconfig(glib-2.0)
 BuildRequires:	pkgconfig(libcurl)
