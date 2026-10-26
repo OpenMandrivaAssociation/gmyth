@@ -48,8 +48,8 @@ Development libraries and headers for the GMyth library.
 
 %prep
 %setup -q
-%patch0 -p0
-%patch1 -p1
+%patch 0 -p0
+%patch 1 -p1
 
 %build
 %configure2_5x --disable-static
