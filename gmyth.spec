@@ -1,3 +1,7 @@
+# The LTO configure workaround rewrites this ancient libtool script into a
+# command that starts with -e, so the shared library is never produced.
+%global _disable_lto 1
+
 %define major 0
 %define libname %mklibname %{name} %{major}
 %define devname %mklibname -d %{name}
@@ -53,10 +57,10 @@ Development libraries and headers for the GMyth library.
 
 %build
 %configure2_5x --disable-static
-%make
+%make LIBTOOL=slibtool-shared
 
 %install
-%makeinstall_std
+%makeinstall_std LIBTOOL=slibtool-shared
 
 %files
 %doc AUTHORS
